@@ -1,2 +1,10 @@
-<div class="container" #container >
-</div>
+
+<a-scene inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
+  <a-plane position="0 0 0" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+  <a-gltf-model
+    src="/assets/kuka.glb"
+    scale="1 1 1"
+    position="0 0 0"
+  ></a-gltf-model>
+  <a-sky color="#ECECEC"></a-sky>
+</a-scene>
