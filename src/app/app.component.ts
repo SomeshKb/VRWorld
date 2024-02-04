@@ -2,6 +2,9 @@ import { AfterViewInit, CUSTOM_ELEMENTS_SCHEMA, Component, ElementRef, Inject, R
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import 'aframe';
+import 'aframe-extras';
+import 'aframe-environment-component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -13,32 +16,28 @@ import 'aframe';
 })
 export class AppComponent implements AfterViewInit {
 
-  @ViewChild("test") myModelEntity: any;
+  @ViewChild("test") myModelEntity: ElementRef | undefined;
 
-  constructor(private el: ElementRef) { }
+  isAnimationPlaying = false;
 
   ngAfterViewInit(): void {
+  }
+
+  constructor() {
 
   }
 
-  handleEntityClick() {
-    console.log("op")
-    const myModelEntity = this.el.nativeElement.querySelector('#myModel');
-    // or
-    // const myModelEntity = this.myModelRef.nativeElement;
-
-    if (myModelEntity) {
-      // Access animations using A-Frame API
-      const animations = myModelEntity.getObject3D('gltf').animations;
-
-      // Log animation information to the console
-      animations.forEach((animation: any, index: any) => {
-        console.log(`Animation ${index}:`, animation);
-      });
-
-      // Play the first animation (adjust the index if needed)
-      myModelEntity.setAttribute('animation-mixer', { clip: animations[0].name, loop: 'repeat' });
+  playAndPauseAnimation() {
+    //https://github.com/c-frame/aframe-extras/blob/master/examples/animation-controls/animation-controls.js
+    //https://github.com/c-frame/aframe-extras/tree/master/src/loaders#animation
+    const modelEntity = this.myModelEntity?.nativeElement;
+    console.log(modelEntity.components)
+    if(this.isAnimationPlaying){
+      modelEntity.setAttribute('animation-mixer', {clip: "none"})
+    } else {
+      modelEntity.setAttribute('animation-mixer', {clip: "*"})
     }
+    this.isAnimationPlaying = !this.isAnimationPlaying;
   }
 
 }

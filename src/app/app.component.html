@@ -1,23 +1,30 @@
+<button (click)="playAndPauseAnimation()"class="button">{{isAnimationPlaying ? "Pause" : "Play"}}</button>
 <a-scene
   inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js"
 >
-  <a-plane
+  <!-- <a-plane
     position="0 0 -5"
     rotation="-90 0 0"
-    width="100"
-    height="100"
-    color="#7BC8A4"
+    width="1000"
+    height="1000"
+    color="#dadada"
   ></a-plane>
+   -->
   <a-gltf-model
     #test
-    src="assets/kuka.glb"
+    src="assets/rail.glb"
     scale="1 1 1"
     position="0 0 -5"
     clickable
-    (click)="handleEntityClick()"
+    animation-mixer="clip: none;"
   ></a-gltf-model>
-  <a-sky color="#ECECEC"></a-sky>
-  <a-camera position="0 1.6 0">
+  <a-simple-sun-sky sun-position="1 0.4 0"></a-simple-sun-sky>
+  <a-camera look-controls wasd-controls position="5 1.6 0" rotation="0 0 0"> </a-camera>
 
-  </a-camera>
+  <a-entity hand-controls="hand: left"></a-entity>
+  <a-entity hand-controls="hand: right"></a-entity>
+  <a-entity environment="flatShading: true;ground: flat;seed: 3"></a-entity>
+
 </a-scene>
+
+
