@@ -1,15 +1,20 @@
-<button (click)="playAndPauseAnimation()"class="button">{{isAnimationPlaying ? "Pause" : "Play"}}</button>
+<button (click)="playAndPauseAnimation()" class="button">
+  {{ isAnimationPlaying ? "Pause" : "Play" }}
+</button>
+
+<script src="https://unpkg.com/aframe-simple-sun-sky@^1.2.3/simple-sun-sky.js"></script>
+
 <a-scene
   inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js"
 >
-  <!-- <a-plane
-    position="0 0 -5"
-    rotation="-90 0 0"
-    width="1000"
-    height="1000"
-    color="#dadada"
-  ></a-plane>
-   -->
+
+<a-assets>
+  <img id="ground" src="assets/Images/k.jpg">
+</a-assets>
+
+<a-assets>
+  <img id="sky" src="assets/Images/sky.jpg">
+</a-assets>
   <a-gltf-model
     #test
     src="assets/rail.glb"
@@ -18,13 +23,11 @@
     clickable
     animation-mixer="clip: none;"
   ></a-gltf-model>
-  <a-simple-sun-sky sun-position="1 0.4 0"></a-simple-sun-sky>
-  <a-camera look-controls wasd-controls position="5 1.6 0" rotation="0 0 0"> </a-camera>
+  <a-simple-sun-sky sun-position="-1 1 -1" light-color="#87cefa" dark-color="#00bfff" fog-color="#74d2fa"></a-simple-sun-sky>
+  <a-camera look-controls wasd-controls position="5 1.6 0" rotation="0 0 0"></a-camera>
 
   <a-entity hand-controls="hand: left"></a-entity>
   <a-entity hand-controls="hand: right"></a-entity>
-  <a-entity environment="flatShading: true;ground: flat;seed: 3"></a-entity>
+  <a-plane rotation="-90 0 0" width="10000" height="10000" material="src: #ground;repeat: 5000 5000" ></a-plane>
 
 </a-scene>
-
-

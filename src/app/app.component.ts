@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import 'aframe';
 import 'aframe-extras';
 import 'aframe-environment-component';
-
+import  './sky';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -41,3 +41,5 @@ export class AppComponent implements AfterViewInit {
   }
 
 }
+
+
